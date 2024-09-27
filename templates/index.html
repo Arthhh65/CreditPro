@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreditPro</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <ul class="navbar-list">
+            <li><a href="#" class="navbar-link">Home</a></li>
+            <li><a href="#" class="navbar-link">About</a></li>
+            <li><a href="#" class="navbar-link">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main container for the left and right sections -->
+    <div class="container">
+        <div class="left-section">
+            <h1>Welcome to CreditPro</h1>
+            <p>Your trusted partner for credit score analysis and alternative financial data assessment.</p>
+        </div>
+
+        <div class="line-separator"></div>
+
+        <div class="right-section">
+            <div class="option" id="checkCreditScore">Check Your Credit Score</div>
+            <div class="option" id="altFinancialData">Alternative Financial Data</div>
+            <div class="option" id="aiAssistant">Integrated AI Assistant</div>
+            <div class="option" id="previousTransactionsBtn">Previous Transactions</div>
+
+            <!-- Login and Sign-Up Buttons -->
+            <button id="loginBtn" class="btn">Login</button>
+            <button id="signupBtn" class="btn">Sign Up</button>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login/Sign Up</h2>
+            <button id="loginGmail" class="btn">Login with Gmail</button>
+            <button id="loginPhone" class="btn">Login with Phone</button>
+        </div>
+    </div>
+
+    <script src="../static/js/script.js"></script>
+</body>
+</html>
