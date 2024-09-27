@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Score Checker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <div class="navbar">
+            <div class="logo">CreditPro</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Credit Score Checker</a></li>
+                    <li><a href="#">Alternative Data</a></li>
+                    <li><a href="#">AI Assistant</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><button id="loginBtn">Login</button></li>
+                    <li><button id="signupBtn">Sign Up</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container for Vertical Split -->
+    <section class="main-container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <h1>Welcome to CreditPro</h1>
+            <p>Your trusted source for checking credit scores and using alternative financial data.</p>
+            <button class="cta">Check Your Credit Score</button>
+        </div>
+
+        <!-- Right Section -->
+        <div class="right-section">
+            <div class="feature" id="feature-1">
+                <h2>Credit Score Checker</h2>
+                <p>Find out your credit score in just seconds. Secure, fast, and reliable.</p>
+            </div>
+
+            <div class="feature" id="feature-2">
+                <h2>Alternative Financial Data</h2>
+                <p>Use non-traditional data to check your creditworthiness. Rent, utilities, and more contribute to your credit score.</p>
+            </div>
+
+            <div class="feature" id="feature-3">
+                <h2>Integrated AI Assistant</h2>
+                <p>Need help? Our AI Assistant is here to answer all your finance-related queries.</p>
+            </div>
+
+            <button id="previousTransactionsBtn">View Previous Transactions</button> <!-- New Button -->
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 CreditPro. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal for Login/Sign Up -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login / Sign Up</h2>
+            <p>Choose your preferred method:</p>
+            <button id="loginPhone">Login with Phone Number</button>
+            <button id="loginGmail">Login with Gmail</button>
+            <button id="signupPhone">Sign Up with Phone Number</button>
+            <button id="signupGmail">Sign Up with Gmail</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
