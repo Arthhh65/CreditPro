@@ -1,21 +1,109 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+from random import randint
+import re  # For regular expressions
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'your_secret_key'  # Replace with a secure key
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///creditpro.db'  # Using SQLite for simplicity
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+# Define the User model
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    password = db.Column(db.String(200), nullable=False)
+
+# Initialize the database
+with app.app_context():
+    db.create_all()  # Creates the database and tables
+    print("Database and tables created successfully")  # Debug print
 
 # Route to serve the homepage
 @app.route('/')
 def home():
     return render_template('index.html')
 
-# Example API route (for handling login, transactions, etc.)
-@app.route('/api/transactions', methods=['GET'])
-def get_transactions():
-    # Example static data for transactions
-    transactions = [
-        {"id": 1, "date": "2024-09-27", "amount": 200.0, "description": "Purchase A"},
-        {"id": 2, "date": "2024-09-26", "amount": 150.0, "description": "Purchase B"}
-    ]
-    return jsonify(transactions)
+# User Registration Route
+@app.route('/register', methods=['POST'])
+def register():
+    email = request.form['email']
+    password = request.form['password']
 
+    # Validate email format
+    if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        return jsonify({"success": False, "message": "Invalid email format"}), 400
+
+    # Validate password length
+    if len(password) < 6:
+        return jsonify({"success": False, "message": "Password must be at least 6 characters"}), 400
+
+    hashed_password = generate_password_hash(password)
+
+    # Check if the user already exists
+    existing_user = User.query.filter_by(email=email).first()
+    if existing_user:
+        return jsonify({"success": False, "message": "User already exists"}), 400
+
+    # Create a new user
+    new_user = User(email=email, password=hashed_password)
+    db.session.add(new_user)
+    db.session.commit()
+    session['user_id'] = new_user.id
+
+    print("User registered successfully.")  # Debug line
+    return jsonify({"success": True, "message": "User registered successfully"}), 200
+
+# User Login Route
+@app.route('/login', methods=['POST'])
+def login():
+    email = request.form['email']
+    password = request.form['password']
+
+    user = User.query.filter_by(email=email).first()
+    if user and check_password_hash(user.password, password):
+        session['user_id'] = user.id
+        return jsonify({"success": True, "message": "Logged in successfully"}), 200
+    else:
+        return jsonify({"success": False, "message": "Invalid credentials"}), 401
+
+# User Logout Route
+@app.route('/logout')
+def logout():
+    session.pop('user_id', None)
+    return jsonify({"success": True, "message": "Logged out successfully"}), 200
+
+# Route to check if user is logged in
+@app.route('/api/check_login')
+def check_login():
+    if 'user_id' in session:
+        return jsonify({"logged_in": True})
+    else:
+        return jsonify({"logged_in": False})
+
+# Route to fetch user's credit score
+@app.route('/api/get_credit_score', methods=['GET'])
+def get_credit_score():
+    if 'user_id' not in session:
+        return jsonify({"success": False, "message": "User not logged in"}), 401
+
+    # Simulating a credit score for now (can be replaced with actual logic)
+    credit_score = randint(300, 850)  # Random credit score between 300 and 850
+
+    return jsonify({"success": True, "credit_score": credit_score}), 200
+
+# Route to serve the profile page
+@app.route('/profile')
+def profile():
+    if 'user_id' not in session:
+        return redirect(url_for('home'))
+
+    user = User.query.get(session['user_id'])
+    return render_template('profile.html', user=user)
+
+# Start the Flask application
 if __name__ == '__main__':
     app.run(debug=True)

@@ -21,20 +21,52 @@ const modal = document.getElementById("modal");
 const loginBtn = document.getElementById("loginBtn");
 const signupBtn = document.getElementById("signupBtn");
 const closeBtn = document.getElementsByClassName("close")[0];
+const loginForm = document.getElementById("loginForm");
+const signupForm = document.getElementById("signupForm"); // Assuming this exists for sign-up
+const loginFormContainer = document.getElementById("loginFormContainer");
+const signupFormContainer = document.getElementById("signupFormContainer");
+const showSignupForm = document.getElementById("showSignupForm");
+const showLoginForm = document.getElementById("showLoginForm");
 
-// Open modal on button click
-loginBtn.onclick = function() {
-    modal.style.display = "block";
-};
+// Open login modal on button click
+if (loginBtn) {
+    loginBtn.onclick = function() {
+        loginFormContainer.style.display = "block";
+        signupFormContainer.style.display = "none";
+        modal.style.display = "block";
+    };
+}
 
-signupBtn.onclick = function() {
-    modal.style.display = "block";
-};
+// Open sign-up modal on button click
+if (signupBtn) {
+    signupBtn.onclick = function() {
+        signupFormContainer.style.display = "block";
+        loginFormContainer.style.display = "none";
+        modal.style.display = "block";
+    };
+}
+
+// Switch between login and sign-up forms
+if (showSignupForm) {
+    showSignupForm.onclick = function() {
+        signupFormContainer.style.display = "block";
+        loginFormContainer.style.display = "none";
+    };
+}
+
+if (showLoginForm) {
+    showLoginForm.onclick = function() {
+        loginFormContainer.style.display = "block";
+        signupFormContainer.style.display = "none";
+    };
+}
 
 // Close modal when clicking the close button
-closeBtn.onclick = function() {
-    modal.style.display = "none";
-};
+if (closeBtn) {
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+    };
+}
 
 // Close modal when clicking outside of the modal
 window.onclick = function(event) {
@@ -43,35 +75,91 @@ window.onclick = function(event) {
     }
 };
 
+// Handle login form submission
+if (loginForm) {
+    loginForm.onsubmit = async function(event) {
+        event.preventDefault(); // Prevent form submission
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            isLoggedIn = true; // Update login status
+            alert("Logged in successfully!");
+            modal.style.display = "none";
+        } else {
+            alert(result.message); // Show error message
+        }
+    };
+}
+
+// Handle sign-up form submission (if applicable)
+if (signupForm) {
+    signupForm.onsubmit = async function(event) {
+        event.preventDefault(); // Prevent form submission
+        const email = document.getElementById("signupEmail").value;
+        const password = document.getElementById("signupPassword").value;
+
+        const response = await fetch('/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            isLoggedIn = true; // Update login status
+            alert("Signed up successfully!");
+            modal.style.display = "none";
+        } else {
+            alert(result.message); // Show error message
+        }
+    };
+}
+
 // Functionality for the Previous Transactions button
 const previousTransactionsBtn = document.getElementById("previousTransactionsBtn");
-
-previousTransactionsBtn.onclick = function() {
-    if (isLoggedIn) {
-        // Replace with actual logic to fetch and display previous transactions
-        alert("Fetching previous transactions...");
-    } else {
-        alert("Login is required to view previous transactions.");
-    }
-};
-
-// Example function to simulate user login
-function login() {
-    isLoggedIn = true; // Update login status
-    modal.style.display = "none"; // Close the modal after logging in
-    alert("Logged in successfully!");
+if (previousTransactionsBtn) {
+    previousTransactionsBtn.onclick = function() {
+        if (isLoggedIn) {
+            // Replace with actual logic to fetch and display previous transactions
+            alert("Fetching previous transactions...");
+        } else {
+            alert("Login is required to view previous transactions.");
+        }
+    };
 }
 
 // Function to fetch credit score and show loader
-function fetchCreditScore() {
-    document.getElementById('loader').style.display = 'block'; // Show loader
+async function fetchCreditScore() {
+    const loader = document.getElementById('loader');
+    if (loader) loader.style.display = 'block'; // Show loader
 
-    // Simulate fetching data with a timeout
-    setTimeout(() => {
-        // After fetching is complete
-        document.getElementById('loader').style.display = 'none'; // Hide loader
-        animateCreditScore(750); // Example to animate to a score of 750
-    }, 2000); // Simulate a 2-second fetch time
+    try {
+        const response = await fetch('/api/get_credit_score');
+        const result = await response.json();
+
+        if (loader) loader.style.display = 'none'; // Hide loader
+
+        if (result.success) {
+            animateCreditScore(result.credit_score);  // Pass fetched score
+        } else {
+            alert(result.message);
+        }
+    } catch (error) {
+        console.error("Error fetching credit score:", error);
+        alert("Error fetching credit score. Please try again.");
+    }
 }
 
 // Function to animate the credit score display
@@ -90,6 +178,43 @@ function animateCreditScore(targetScore) {
     }, 30); // Adjust speed of animation by changing the interval time
 }
 
-// Replace the login button functionality to call this login function
-document.getElementById("loginGmail").onclick = login; // Example for Gmail login
-document.getElementById("loginPhone").onclick = login; // Example for Phone login
+// Check login status on page load
+async function checkLoginStatus() {
+    const response = await fetch('/api/check_login');
+    const result = await response.json();
+    if (result.logged_in) {
+        isLoggedIn = true;
+        alert("User is logged in!");
+        // Maybe update the UI to reflect logged-in state
+    } else {
+        isLoggedIn = false;
+        // Update the UI for logged-out state
+    }
+}
+
+// Call this function on page load
+window.onload = checkLoginStatus;
+
+// Function to fetch credit score and show loader
+// Function to fetch credit score and show loader
+async function fetchCreditScore() {
+    const loader = document.getElementById('loader');
+    if (loader) loader.style.display = 'block'; // Show loader
+
+    try {
+        const response = await fetch('/api/get_credit_score');
+        const result = await response.json();
+
+        if (loader) loader.style.display = 'none'; // Hide loader
+
+        if (result.success) {
+            animateCreditScore(result.credit_score);  // Pass fetched score
+        } else {
+            alert(result.message);
+        }
+    } catch (error) {
+        console.error("Error fetching credit score:", error);
+        alert("Error fetching credit score. Please try again.");
+    }
+}
+
