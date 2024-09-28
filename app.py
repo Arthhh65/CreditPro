@@ -2,6 +2,10 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from random import randint
+import numpy as np
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+import tensorflow as tf
 import re  # For regular expressions
 
 app = Flask(__name__)
@@ -10,6 +14,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///creditpro.db'  # Using SQLite
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+# Load the pre-trained model
+model = tf.keras.models.load_model('credit_scoring_model.h5')
+
+# Initialize the scaler (make sure to save and load it if needed)
+scaler = StandardScaler()
 
 # Define the User model
 class User(db.Model):
@@ -103,6 +113,27 @@ def profile():
 
     user = User.query.get(session['user_id'])
     return render_template('profile.html', user=user)
+
+# New Route to predict credit score
+@app.route('/api/predict_credit_score', methods=['POST'])
+def predict_credit_score():
+    if 'user_id' not in session:
+        return jsonify({"success": False, "message": "User not logged in"}), 401
+
+    # Get alternative financial data from request
+    data = request.json.get('data')  # Expecting an array of features
+    if not data or len(data) != 10:  # Adjust based on your model input
+        return jsonify({"success": False, "message": "Invalid input data"}), 400
+
+    # Preprocess the input data
+    data = np.array(data).reshape(1, -1)  # Reshape for a single prediction
+    data = scaler.transform(data)  # Scale data
+
+    # Make a prediction
+    prediction = model.predict(data)
+    predicted_class = (prediction > 0.5).astype(int)  # Convert to binary class
+
+    return jsonify({"success": True, "predicted_credit_score": predicted_class[0][0]}), 200
 
 # Start the Flask application
 if __name__ == '__main__':
