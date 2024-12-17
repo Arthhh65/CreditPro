@@ -1,0 +1,129 @@
+/* .headers{
+    padding-left: 50px;
+    display: flex;
+    direction: row;
+    margin-top: 0px;
+    width: 30%;
+} */
+.headers{
+    float:left;
+    width: 50%;
+    column-count: 2;
+    column-gap: 50px;
+    height: 50px;
+}
+a{
+    text-decoration: none;
+    color: black;
+    
+}
+.nav{
+    padding: 5px;
+}
+.image{
+    position: relative;
+    object-fit: cover;
+}
+.heading
+{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.nav{
+    float: left;
+}
+.top-left{
+    position: absolute;
+    top :175px;
+    left: 10%;
+    color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: x-large;
+}
+.bottom-tl{
+    position: absolute;
+    top: 210px;
+    background: rgba(255,255,255, 0.4);
+    font-size: 20px;
+    font-style: bold;
+    left: 10%;
+    
+    padding-left: 5px;
+    padding-right: 5px;
+    color: balck;
+
+}
+.mbtl{
+    position:absolute;
+    top :235px;
+    left: 10%;
+    background-color: rgba(241, 255, 241, 0.1);
+    color: brown;
+    height: 70px;
+    padding: 0px;
+    margin-top: 10px;
+    
+    padding-left: 5px;
+    padding-right: 5px;
+}
+h5{
+    padding: 0px;
+    margin: 0px;
+}
+.mid{
+    text-align: center;
+}
+.cols1{
+    margin-left: 0%;
+    width: 20%;
+    float: left;
+}
+.cols2{
+    margin-left: 20%;
+    width: 20%;
+    float: left;
+}
+.cols{
+    border-top: 2px solid rgba(150,150,150,0.5);
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 200px;
+    overflow: hidden;
+}
+.colss{
+    border-top: 2px solid rgba(150,150,150,0.5);
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10px;
+    height: 250px;
+    overflow: hidden;
+}
+.cols11{
+    margin-left: 0%;
+    width: 20%;
+    float: left;
+    object-fit: cover;
+}
+.image-container{
+    float: left;
+    width: 33%;
+    margin-left: 8.5%;
+    margin-top: 10px;
+    border: 1px solid black;
+    background-color: white;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.49);
+}
+.colsss{
+    border-top: 2px solid rgba(150,150,150,0.5);
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10px;
+    height: 0px;
+}
+.under{
+    margin-top: 10px;
+}
+
+

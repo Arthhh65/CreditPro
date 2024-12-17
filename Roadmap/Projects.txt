@@ -1,0 +1,53 @@
+						Projects
+
+Algorithms based projects 
+-sorting visualizer
+-graph or tree visualizer
+-file compression
+-end to end encription
+2048 game
+-sudoku
+magical commands for BA
+
+Algorithms based projects
+-travel companion using google maps API
+-a recipe website
+-a language reanslation tool using google translate API
+-tic tac toe
+-snake game
+-math training game
+-pomodoro app
+-password generator
+-flappy bird
+-spotify  clone
+
+Full stack projects
+-e-commerce website 
+-todo app
+-student time table planner
+-chat application
+
+System management projects
+-library management
+-hotel management
+-airline management
+-placement cell management
+
+Machine learning projects
+-spam detector for email
+-crop yield optimizer
+-recommended system foe content 
+-gesture detection
+-house price prediction 
+-fake news prediction
+
+Blockchain projects
+-crowd funding platform
+-car pooling
+-voting system
+-document storage
+-stock market for crypto
+
+Google Chrome Extensions
+-color picker
+-note keeping

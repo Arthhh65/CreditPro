@@ -1,0 +1,64 @@
+<style>
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .box1, .box2, .box3 {
+        float: left;
+        width: 23%;
+        border: 1px solid black;
+        margin: 50px;
+        background-color: antiquewhite;
+    }
+
+    .box2 {
+        background-color: aquamarine;
+    }
+
+    .box3 {
+        background-color: beige;
+    }
+
+    marquee {
+        border-top: 3px solid whitesmoke;
+        width: 200px;
+        height: 200px;
+    }
+
+    section {
+        margin: 15px;
+    }
+
+    marquee, h3 {
+        margin: 10px;
+    }
+
+    /* Add responsiveness for smaller screens */
+    @media screen and (max-width: 768px) {
+        .box1, .box2, .box3 {
+            float: none;
+            width: 90%; /* Adjust width to fit within smaller screens */
+            margin: 10px auto; /* Center the boxes */
+        }
+
+        marquee {
+            width: 100%; /* Make marquee adapt to box width */
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .box1, .box2, .box3 {
+            width: 100%; /* Full width for very small screens */
+            margin: 5px auto;
+        }
+
+        h3 {
+            font-size: 18px; /* Adjust font size for headers */
+        }
+
+        marquee {
+            height: 150px; /* Reduce marquee height */
+        }
+    }
+</style>

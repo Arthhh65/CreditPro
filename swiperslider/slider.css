@@ -1,0 +1,88 @@
+html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .swiper-slide>h1{
+        animation-duration: 4s;
+        animation-direction: normal;
+        animation-delay: 2s;
+    }
+    /* Define animation keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply the animation to text */
+.swiper-slide h1 {
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Optional: Add transitions for smoother effects */
+.swiper-slide h1 {
+    transition: all 2s ease-in-out;
+}
+
+/* Example hover effect for transitions */
+.swiper-slide h1:hover {
+    color: #ff6600; /* Changes text color on hover */
+    transform: scale(1.1); /* Slightly enlarges the text */
+}
+/* Define the animation keyframes */
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* The animation class */
+  .animate-text {
+    animation: fadeInUp 1s ease-in-out;
+  }
+  

@@ -1,0 +1,268 @@
+.logos{
+    color: white;
+    border-right: 1px solid rgba(83, 82, 82, 0.5) ;
+    padding: 0.8em;
+
+}
+.logos4{
+    color: white;
+    padding: 0.7em;
+}
+flexnav>a{
+    display: flex;
+    direction: row;
+    justify-content: space-between;
+}
+.navbtnn{
+    border: 1px solid orangered;
+    border-radius: 15%;
+    background-color: orangered;
+}
+@media screen and(max-width:768px) {
+    .navbtnn{
+        border: 1px solid black;
+        background-color: rgba(83, 82, 82, 0.5);
+        width: 30%;
+        border-radius: 1%;
+    }
+}
+.navig{
+    color: black;
+}
+.intro{
+    background-image: url(https://parkensolution.com/drpriyankayadav/assets/images/hospital/banner/banner-bg.jpg);
+    animation-name: example;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+}
+@keyframes example {
+    from {background-image:url(https://parkensolution.com/drpriyankayadav/assets/images/hospital/banner/banner-bg.jpg) ;}
+    to {background-image:url(https://parkensolution.com/drpriyankayadav/assets/images/hospital/banner/bg_dr.jpg) ;}
+    
+  }
+.intro1{
+    background-color: rgba(83, 82, 82, 0.1);
+}
+.img2{
+    border: 1px solid white;
+    background-color: white;
+    border-radius: 15%;
+    box-shadow: 0px 6px 12px 0px;
+    padding-top: 3em;
+}
+.listing{
+    list-style-type: none;
+}
+.arrows{
+    color: purple;
+    padding-right: 2%;
+}
+.sechead{
+    text-align: center;
+    background-color: purple;
+}
+.secol{
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 10%;
+    transition: transform 1s;
+}
+.secol:hover{
+  transform: translateY(-20px);
+  transform: scale(1.1) translateY(-20px);
+}
+.secimg{
+    width: 30%;
+    height: auto;
+    margin-bottom: 30px;
+}
+.secol>p{
+    text-align: center;
+}
+.card{
+    text-align: center;
+    border-radius: 5%;
+    box-shadow: 0px 2px 2px 0px;
+    transition: transform 2s;
+}
+.card:hover{
+    transform: translateY(-20px);
+    transform: scale(1.05) translateY(-20px);
+}
+.imgbord>img{
+    border: 1px solid white;
+    border-radius: 5%;
+    overflow: hidden;
+    transition: transform 1s;
+}
+.imgbord>img:hover{
+    transform: scale(1.3) rotate(5deg);
+    
+}
+.imgbord{
+    overflow: hidden;
+    border: 1px solid transparent;
+    border-radius: 5%;
+    margin: 2%;
+}
+.content>h1{
+    color: white;
+    text-align: center;
+    font-style: bold;
+    font-weight: 700;
+    font-size: xx-large;
+}
+.content>p{
+    color: white;
+    text-align: center;
+    font-style: bold;
+    font-weight: 700;
+    font-size: small;
+}
+.infobubble{
+    justify-content: center;
+    background-color: white;
+    border-radius: 0% 50% 0% 50% ;
+}
+.bubblelogo{
+    font-size: 2em;
+}
+.bubblelogo>.new{
+    border-radius: 50%;
+    text-align: center;
+    background-color: violet;
+    color: white;
+    font-size: 100%;
+    overflow: hidden;
+}
+.infobubble>.row>p{
+    font-size: xx-small;
+}
+.infobubble>.row.col{
+    justify-content:center ;
+}
+.logotext>h2{
+    justify-content: center;
+    margin: 20px;
+}
+.footertext{
+    color: white;
+}
+.logos3{
+    color: white;
+    border: 1px solid violet ;
+    padding: 0.8em;
+    border-radius: 50%;
+    background-color: violet;
+}
+.footer.li{
+    list-style: tranaparent;
+    text-decoration: none;
+}
+.footer.li>i{
+    color: greenyellow;
+    text-decoration: none;
+}
+.footermid{
+    color: white;
+    text-decoration: none;
+}
+.footer.li>i{
+    color: greenyellow;
+    text-decoration: none;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Libre+Franklin:300,400,600,700,800&display=swap");
+
+html, body {
+    font-family: "Libre Franklin", sans-serif;
+}
+
+div.carousel-nav-icon > svg {
+    height: 48px;
+    width: 48px;
+}
+
+html[data-bs-theme="dark"] div.carousel-nav-icon > svg {
+    fill: #FFF !important;
+}
+
+@media (max-width: 767px) {
+    .carousel-inner .carousel-item > div {
+        display: none;
+    }
+    .carousel-inner .carousel-item > div:first-child {
+        display: block;
+    }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+    display: flex;
+}
+
+/* medium and up screens */
+@media (min-width: 768px) {
+
+    .carousel-inner .carousel-item-end.active,
+    .carousel-inner .carousel-item-next {
+        transform: translateX(33%);
+    }
+
+    .carousel-inner .carousel-item-start.active, 
+    .carousel-inner .carousel-item-prev {
+        transform: translateX(-33%);
+    }
+}
+
+.carousel-inner .carousel-item-end,
+.carousel-inner .carousel-item-start { 
+    transform: translateX(0);
+}
+
+/* Nothing below this point is needed. */
+.dark-mode-toggle {
+    bottom: 3%;
+    right: 3%;
+    z-index: 10;
+}
+.dark-mode-toggle,
+.dark-mode-toggle > *, 
+.dark-mode-toggle > * > * {
+    cursor: pointer;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 80%;
+    height: 90%;
+    object-fit: cover;
+  }
+
+  .swiper-slide {
+    width: 80%;
+  }
+
+  .swiper-slide:nth-child(2n) {
+    width: 60%;
+  }
+
+  .swiper-slide:nth-child(3n) {
+    width: 40%;
+  }

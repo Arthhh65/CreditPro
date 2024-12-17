@@ -1,0 +1,48 @@
+/* General styles for the container */
+.image-container {
+    position: relative;
+    width: 100vw; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    overflow: hidden; /* Ensures no overflow beyond the container */
+  }
+  
+  /* Make the image responsive and constrained to the viewport */
+  .responsive-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+  }
+  
+  /* Center the text */
+  .centered-text {
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    text-align: left;
+    color: white; /* Adjust text color */
+    font-size: 2em;  /* Optional: rounded corners for text background */
+  }
+  .img2{
+    position: absolute;
+    top: 30%;
+    left: 60%;
+    width: 30%;
+    height: auto;
+  }
+  
+  /* Media query for responsive adjustments */
+  @media (max-width: 600px) {
+    .centered-text {
+      font-size: 1em; /* Adjust font size for smaller screens */
+      padding: 5px;
+    }
+    .img2{
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: auto;
+        left: auto;
+    }
+  }
+
+  

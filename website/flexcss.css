@@ -1,0 +1,15 @@
+.flex-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10%;
+    border: 3px solid red;
+    background-color: yellowgreen;
+}
+.flex-container>div{
+    width: 20%;
+    margin: 1%;
+}

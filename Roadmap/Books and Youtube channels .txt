@@ -1,0 +1,11 @@
+					Books and Youtube channels 
+
+
+Data Structure and Algorithms
+-data structure and algorithms made easy (narasimha karumanchi)
+
+Cracking the coding interview (gayle )
+
+Extension-
+Leet code video solution
+Leet code timer

@@ -1,0 +1,14 @@
+					To be Learned
+
+
+COMPUTER SCIENCE FUNDAMENTALS -
+
+
+time and space complexity(using big - o notation ) 
+basic data structures(arrays , stacks , vector , queue , binary tree , kinked lists)
+algorithms (sorting , searching & recursion)
+
+Operating Systems
+DBMS
+OOPs
+Computer Networks
